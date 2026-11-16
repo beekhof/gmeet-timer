@@ -1,10 +1,22 @@
 {
   "manifest_version": 3,
   "name": "Meeting Timer Overlay",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Shows a small, movable overlay with how long you've been in the current meeting.",
-  "permissions": ["storage"],
+  "permissions": [
+    "storage"
+  ],
   "content_scripts": [
+    {
+      "matches": [
+        "https://meet.google.com/*"
+      ],
+      "js": [
+        "page-hook.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
     {
       "matches": [
         "https://meet.google.com/*",
@@ -13,8 +25,11 @@
         "https://teams.live.com/*",
         "https://teams.cloud.microsoft/*"
       ],
-      "js": ["content.js"],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "minimum_chrome_version": "111"
 }
